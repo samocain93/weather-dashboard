@@ -1,44 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/cab1bce42c.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/cab1bce42c.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Weather Dashboard</title>
-</head>
+  </head>
 
-<!-- Body -->
-<body>
+  <!-- Body -->
+  <body>
     <header class="container-fluid text-bg-primary text-center">
-        <h1>Weather Dashboard</h1>
+      <h1>Weather Dashboard</h1>
     </header>
 
+    <!-- City Search Column Box -->
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-4 bg-light">
-                <h5>City Search:</h5>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Austin" aria-label="Username"
-                  </div>
-
-            </div>
+      <div class="row">
+        <div class="col-lg-4 bg-light">
+          <h5>City Search:</h5>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Austin" aria-label="search-city"
+            aria-label="Username"
+          </div>
+          <div>
+            <button type="button" class="btn btn-warning" id="search-button">
+              <i class="fa-solid fa-magnifying-glass"></i> Search      
+             </button>
+          </div>
         </div>
+      </div>
+    </div>
 
+    <!-- Container to show current city with date, temp, humidity, wind speed and uv index  -->
 
+    <div class="col-lg-9">
+      <div class="row m-auto">
+        <div class="col-lg-11">
 
-
+        </div>
+      </div>
     </div>
 
 
-
-
-
-
-
-<script src="./assets/js/script.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>    
-</body>
+    <script src="./assets/js/script.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
