@@ -16,6 +16,17 @@ var city;
 
 searchBtn.addEventListener("click", grabCity)
 
+citySearch.onkeyup(function (event){
+    event.preventDefault();
+    if (event.keyCode === 13){
+        
+        searchBtn.click(grabCity);
+    }
+})
+
+
+
+
 function grabCity(event) {
     event.preventDefault();
 
@@ -46,5 +57,13 @@ function getCityWeather(cityName) {
 function renderCityData(data) {
     $('#city-name').text(data.name);
     
+    var iconCode = data.weather[0].icon;
+    var iconUrl = "http://openweathermap.org/img/wn/" + iconCode + "@2x" + ".png";
+    $('#weather-icon').attr('src', iconUrl);
+
+    $('#today-temp').text('Temperature: ' + data.main.temp + ' °F');
+    $('#today-wind-speed').text('Wind Speed: ' + data.wind.speed + ' mph');
+    $('#today-humidity').text('Humidity: ' + data.main.humidity + '%');
+
 
 }
