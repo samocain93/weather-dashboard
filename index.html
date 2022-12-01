@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/style.css" />
+    
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./styles/style.css" />
     <script
       src="https://kit.fontawesome.com/cab1bce42c.js"
       crossorigin="anonymous"
@@ -37,7 +38,7 @@
               placeholder="Austin"
               aria-label="city-search"
             />
-            <div class="city-search-append">
+            <div class="input-group-append">
               <button type="button" class="btn btn-warning" id="search-button">
                 <i class="fa-solid fa-magnifying-glass"></i> Search
               </button>
@@ -53,7 +54,7 @@
           <div class="row mr-0">
             <div class="col-lg-11 m-3" id="weather-today">
               <div class="card-body">
-                <h3>Austin, Texas</h3>
+                <h3 id="city-name" class="city-name">Austin, Texas</h3>
                 <p id="weather-icon"><i class="fa-solid fa-sun"></i></p>
                 <p id="today-temp">Today's Temperature:</p>
                 <p id="today-wind-speed">Wind Speed:</p>
