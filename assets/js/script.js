@@ -21,7 +21,30 @@ function grabCity(event) {
 
     var cityName = $("#city-search").val();
     getCityWeather(cityName);
+}
 
-    // var cityName = $("city-search").val()
-    // console.log(cityName)
+// TODO: Create function to get city weather and make api call 
+
+
+function getCityWeather(cityName) {
+    var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q= "+ cityName + "&appid=" + apiKey + "&units=imperial";
+
+    fetch(queryUrl)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data)
+
+        todayWeatherEl.classList.remove("d-none");
+        renderCityData(data);
+    })
+
+  
+}
+
+function renderCityData(data) {
+    $('#city-name').text(data.name);
+    
+
 }
