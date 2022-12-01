@@ -16,13 +16,15 @@ var city;
 
 searchBtn.addEventListener("click", grabCity)
 
-citySearch.onkeyup(function (event){
-    event.preventDefault();
-    if (event.keyCode === 13){
+//  TODO: Figure out how to get search to trigger when pressing enter here
+
+// citySearch.onkeyup(function (event){
+//     event.preventDefault();
+//     if (event.keyCode === 13){
         
-        searchBtn.click(grabCity);
-    }
-})
+//         searchBtn.click(grabCity);
+//     }
+// })
 
 
 
@@ -67,3 +69,6 @@ function renderCityData(data) {
 
 
 }
+
+// TODO: Make 5 day forecast call and render elements 
+
