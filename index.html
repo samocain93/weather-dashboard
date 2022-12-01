@@ -20,7 +20,7 @@
 
   <!-- Body -->
   <body>
-    <header class="container-fluid text-bg-primary text-center">
+    <header class="container-fluid text-bg-primary bg-gradient text-center">
       <h1>Weather Dashboard</h1>
     </header>
 
@@ -43,6 +43,7 @@
               </button>
             </div>
           </div>
+          <button class="btn btn-primary mb-3" type="button" id="clear-search">Clear My Searches</button>
           <form id="search-history"></form>
         </div>
 
@@ -50,51 +51,58 @@
 
         <div class="col-lg-9">
           <div class="row mr-0">
-            <div class="col-lg-11 m-3 d-none" id="weather-today">
+            <div class="col-lg-11 m-3" id="weather-today">
               <div class="card-body">
                 <h3>Austin, Texas</h3>
-                <p id="today-temp">Today's Temperature</p>
-                <p id="today-wind-speed"></p>
-                <p id="today-humidity"></p>
+                <p id="today-temp">Today's Temperature:</p>
+                <p id="today-wind-speed">Wind Speed:</p>
+                <p id="today-humidity">Humidity:</p>
               </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
-              <h4>Date</h4>
-              <p>FA Icon</p>
-              <p>Temp</p>
-              <p>Wind Speed</p>
-              <p>Humidity</p>
+          <!-- Row that displays 5 day weather forecast -->
+
+          <div class="row" id="forecast">
+            <div class="col-12">
+              <h3>5-Day Forecast:</h3>
             </div>
-            <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
-              <h4>Date</h4>
-              <p>FA Icon</p>
-              <p>Temp</p>
-              <p>Wind Speed</p>
-              <p>Humidity</p>
-            </div>
-            <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
-              <h4>Date</h4>
-              <p>FA Icon</p>
-              <p>Temp</p>
-              <p>Wind Speed</p>
-              <p>Humidity</p>
-            </div>
-            <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
-              <h4>Date</h4>
-              <p>FA Icon</p>
-              <p>Temp</p>
-              <p>Wind Speed</p>
-              <p>Humidity</p>
-            </div>
-            <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
-              <h4>Date</h4>
-              <p>FA Icon</p>
-              <p>Temp</p>
-              <p>Wind Speed</p>
-              <p>Humidity</p>
+            <div class="row">
+              <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
+                <h4>Date</h4>
+                <p>FA Icon</p>
+                <p>Temp</p>
+                <p>Wind Speed</p>
+                <p>Humidity</p>
+              </div>
+              <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
+                <h4>Date</h4>
+                <p>FA Icon</p>
+                <p>Temp</p>
+                <p>Wind Speed</p>
+                <p>Humidity</p>
+              </div>
+              <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
+                <h4>Date</h4>
+                <p>FA Icon</p>
+                <p>Temp</p>
+                <p>Wind Speed</p>
+                <p>Humidity</p>
+              </div>
+              <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
+                <h4>Date</h4>
+                <p>FA Icon</p>
+                <p>Temp</p>
+                <p>Wind Speed</p>
+                <p>Humidity</p>
+              </div>
+              <div class="col-md-2 forecast bg-primary text-white m-2 rounded">
+                <h4>Date</h4>
+                <p>FA Icon</p>
+                <p>Temp</p>
+                <p>Wind Speed</p>
+                <p>Humidity</p>
+              </div>
             </div>
             <div
               class="col-md-2 forecast bg-primary text-white m-2 rounded"
