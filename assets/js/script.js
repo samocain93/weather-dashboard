@@ -26,7 +26,7 @@ searchBtn.addEventListener("click", grabCity)
 //     }
 // })
 
-
+// Funciton to get city value from search box and store in a variable for functions
 function grabCity(event) {
     event.preventDefault();
 
@@ -36,6 +36,8 @@ function grabCity(event) {
 
 // TODO: Create function to get city weather and make api call 
 
+
+// TODO: put 5 day call all inside this function to grab everything at once
 
 function getWeather(cityName) {
     var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q= "+ cityName + "&appid=" + apiKey + "&units=imperial";
@@ -49,6 +51,8 @@ function getWeather(cityName) {
 
         todayWeatherEl.classList.remove("d-none");
         renderCityData(data);
+        forecastEl.classList.remove("d-none");
+        getForecast(city);
     })
 
 
@@ -71,6 +75,7 @@ function renderCityData(data) {
 }
 
 // TODO: Make 5 day forecast call and render elements 
+// Function call is working and grabbing data
 
 function getForecast(city) {
     var city = $("#city-search").val()
