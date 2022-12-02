@@ -27,19 +27,17 @@ searchBtn.addEventListener("click", grabCity)
 // })
 
 
-
-
 function grabCity(event) {
     event.preventDefault();
 
     var cityName = $("#city-search").val();
-    getCityWeather(cityName);
+    getWeather(cityName);
 }
 
 // TODO: Create function to get city weather and make api call 
 
 
-function getCityWeather(cityName) {
+function getWeather(cityName) {
     var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q= "+ cityName + "&appid=" + apiKey + "&units=imperial";
 
     fetch(queryUrl)
@@ -53,6 +51,8 @@ function getCityWeather(cityName) {
         renderCityData(data);
     })
 
+
+    
   
 }
 
@@ -72,3 +72,15 @@ function renderCityData(data) {
 
 // TODO: Make 5 day forecast call and render elements 
 
+function getForecast(city) {
+    var city = $("#city-search").val()
+    var forecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+
+    fetch(forecast)
+    .then(function(response) {
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)
+    })
+}
