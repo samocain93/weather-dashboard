@@ -34,10 +34,12 @@ function grabCity(event) {
     getWeather(cityName);
 }
 
-// TODO: Create function to get city weather and make api call 
+// Create function to get city weather and make api call 
 
 
-// TODO: put 5 day call all inside this function to grab everything at once
+// put 5 day call all inside this function to grab everything at once - done
+
+
 
 function getWeather(cityName) {
     var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q= "+ cityName + "&appid=" + apiKey + "&units=imperial";
@@ -53,11 +55,11 @@ function getWeather(cityName) {
         renderCityData(data);
         forecastEl.classList.remove("d-none");
         getForecast(city);
+
+
     })
 
 
-    
-  
 }
 
 function renderCityData(data) {
@@ -88,4 +90,17 @@ function getForecast(city) {
     .then(function(data){
         console.log(data)
     })
+}
+
+
+ function renderForecast(data) {
+     // TODO: Render forecast data to cards 
+
+     const forecastEls = document.querySelectorAll(".forecast");
+     for (let i = 0; i < forecastEls.length; i++) {
+         forecastEls[i].innerHTML = "";
+         const index = i * 8 + 4;
+         const date = new Date(data.list[index].dt * 1000);
+         console.log(date)
+     }
 }
