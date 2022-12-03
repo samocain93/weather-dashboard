@@ -55,6 +55,7 @@ function getWeather(cityName) {
         renderCityData(data);
         forecastEl.classList.remove("d-none");
         getForecast(city);
+        renderForecast(data);
 
 
     })
@@ -100,7 +101,6 @@ function getForecast(city) {
      for (let i = 0; i < forecastEls.length; i++) {
          forecastEls[i].innerHTML = "";
          const index = i * 8 + 4;
-         const date = new Date(data.list[index].dt * 1000);
-         console.log(date)
-     }
-}
+         const forecastDate = new Date(response.data.list[forecastIndex].dt * 1000);
+    }
+ }
