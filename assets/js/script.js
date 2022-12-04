@@ -31,16 +31,6 @@ citySearch.addEventListener("keypress", function(event){
     }
 });
 
-//  TODO: Figure out how to get search to trigger when pressing enter here
-
-// citySearch.onkeyup(function (event){
-//     event.preventDefault();
-//     if (event.keyCode === 13){
-        
-//         searchBtn.click(grabCity);
-//     }
-// })
-
 // Funciton to get city value from search box and store in a variable for functions
 function grabCity(event) {
     event.preventDefault();
@@ -123,7 +113,7 @@ function getForecast(city) {
             forecastDateEl.setAttribute('class', 'mt-3 mb-0 forecast-date');
             forecastDateEl.innerHTML = dayjs(data.list[index].dt_txt).format('MM/DD/YYYY');
             forecastEls[i].innerHTML = forecastDateEl.innerHTML + `<br> <img src="http://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png"> <br> <p>Temperature: ${data.list[index].main.temp} °F</p> `;
-
+            // TODO: finish set up of rendering elements to forecast cards
         
     }
 
@@ -139,7 +129,7 @@ function renderSearchHistory() {
     }
     searchHistoryEl.innerHTML = "";
     for (let i = 0; i < searchHistory.length; i++) {
-        searchHistoryEl.innerHTML += `<h4>${searchHistory[i]}</h4>`
+        searchHistoryEl.innerHTML += `<input type="text" readonly class="form-control d-block bg-white mb-2" value="${searchHistory[i]}">`
     }
 }
 
@@ -148,79 +138,6 @@ renderSearchHistory();
 
 clearBtn.addEventListener("click", function(){
     localStorage.clear();
-
+    searchHistory = [];
+    renderSearchHistory();
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function getForecast(city) {
-//     var city = $("#city-search").val();
-//     var forecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
-
-//     fetch(forecast)
-//     .then(function(response) {
-
-//         const forecastEls = document.querySelectorAll(".forecast");
-//         for (let i = 0; i < forecastEls.length; i++) {
-//             forecastEls[i].innerHTML = "";
-//             const index = i * 8 + 4;
-//             const forecastDate = new Date(response.data.list[forecastIndex].dt * 1000);
-   
-//             const forecastDateEl = document.createElement("p");
-//             forecastDateEl.setAttribute('class', 'mt-3 mb-0 forecast-date');
-//             forecastDateEl.innerHTML = response.data.list[index].dt_txt;
-   
-   
-//        }
-//     })
-// }
-
-
-
-
-
-
-
-
-
-    //     return response.json()
-    // })
-    // .then(function(data){
-    //     renderForecast(data);
-    //     console.log(data)
-    // })
-
-
-
-
-// come back to this
-//  function renderForecast() {
-
-//      const forecastEls = document.querySelectorAll(".forecast");
-//      for (let i = 0; i < forecastEls.length; i++) {
-//          forecastEls[i].innerHTML = "";
-//          const index = i * 8 + 4;
-//         //  const forecastDate = new Date(response.data.list[forecastIndex].dt * 1000);
-
-//          const forecastDateEl = document.createElement("p");
-//          forecastDateEl.setAttribute('class', 'mt-3 mb-0 forecast-date');
-//          forecastDateEl.innerHTML = response.data.list[index].dt_txt;
-
-
-//     }
-// 
-
