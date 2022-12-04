@@ -7,6 +7,7 @@ const weatherPicEl = document.getElementById("weather-icon");
 const currentWindEl = document.getElementById("today-wind-speed");
 const currentHumidityEl = document.getElementById("today-humidity");
 const forecastEl = document.getElementById("forecast");
+const searchHistoryEl = document.getElementById("search-history");
 
 
 // Saving API key variable
@@ -14,7 +15,10 @@ var apiKey = "a1fe84e1ab8a4fe1c1aa03d84e6c4570";
 
 var city;
 
-searchBtn.addEventListener("click", grabCity)
+let searchHistory = [];
+
+searchBtn.addEventListener("click", grabCity);
+searchBtn.addEventListener("keydown", grabCity);
 
 //  TODO: Figure out how to get search to trigger when pressing enter here
 
@@ -30,6 +34,7 @@ searchBtn.addEventListener("click", grabCity)
 function grabCity(event) {
     event.preventDefault();
 
+    // copy these to put in the keypress event function
     var cityName = $("#city-search").val();
     getWeather(cityName);
 }
@@ -51,11 +56,15 @@ function getWeather(cityName) {
     .then(function (data) {
         console.log(data)
 
+        searchHistory.push(cityName);
+        localStorage.setItem("city", JSON.stringify(searchHistory));
+        renderSearchHistory();
+
         todayWeatherEl.classList.remove("d-none");
         renderCityData(data);
         forecastEl.classList.remove("d-none");
         getForecast(city);
-        renderForecast(data);
+        // renderForecast(data);
 
 
     })
@@ -81,26 +90,122 @@ function renderCityData(data) {
 // Function call is working and grabbing data
 
 function getForecast(city) {
-    var city = $("#city-search").val()
-    var forecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+    var city = $("#city-search").val();
+    var forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
 
     fetch(forecast)
-    .then(function(response) {
-        return response.json()
+    .then(function (response) {
+        return response.json();
     })
-    .then(function(data){
+    .then(function (data){
         console.log(data)
-    })
+
+
+        // Don't know where to put this / not getting response in console
+        const forecastEls = document.querySelectorAll(".forecast");
+        // forecastEls[i].innerHTML = "";
+        for (let i = 0; i < forecastEls.length; i++) {
+            
+            const index = i * 8 + 3;
+            const forecastDate = new Date(data.list[index].dt * 1000);
+   
+            const forecastDateEl = document.createElement("p");
+            forecastDateEl.setAttribute('class', 'mt-3 mb-0 forecast-date');
+            forecastDateEl.innerHTML = dayjs(data.list[index].dt_txt).format('MM/DD/YYYY');
+            forecastEls[i].innerHTML = forecastDateEl.innerHTML + `<br> <img src="http://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png"> <br> <p>Temperature: ${data.list[index].main.temp} °F</p> `;
+
+        
+    }
+
+})
 }
 
 
- function renderForecast(data) {
-     // TODO: Render forecast data to cards 
 
-     const forecastEls = document.querySelectorAll(".forecast");
-     for (let i = 0; i < forecastEls.length; i++) {
-         forecastEls[i].innerHTML = "";
-         const index = i * 8 + 4;
-         const forecastDate = new Date(response.data.list[forecastIndex].dt * 1000);
+function renderSearchHistory() {
+    var city = localStorage.getItem("city");
+    if(city) {
+        searchHistory = JSON.parse(city)
     }
- }
+    searchHistoryEl.innerHTML = "";
+    for (let i = 0; i < searchHistory.length; i++) {
+        searchHistoryEl.innerHTML += `<h4>${searchHistory[i]}</h4>`
+    }
+}
+
+renderSearchHistory();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function getForecast(city) {
+//     var city = $("#city-search").val();
+//     var forecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+
+//     fetch(forecast)
+//     .then(function(response) {
+
+//         const forecastEls = document.querySelectorAll(".forecast");
+//         for (let i = 0; i < forecastEls.length; i++) {
+//             forecastEls[i].innerHTML = "";
+//             const index = i * 8 + 4;
+//             const forecastDate = new Date(response.data.list[forecastIndex].dt * 1000);
+   
+//             const forecastDateEl = document.createElement("p");
+//             forecastDateEl.setAttribute('class', 'mt-3 mb-0 forecast-date');
+//             forecastDateEl.innerHTML = response.data.list[index].dt_txt;
+   
+   
+//        }
+//     })
+// }
+
+
+
+
+
+
+
+
+
+    //     return response.json()
+    // })
+    // .then(function(data){
+    //     renderForecast(data);
+    //     console.log(data)
+    // })
+
+
+
+
+// come back to this
+//  function renderForecast() {
+
+//      const forecastEls = document.querySelectorAll(".forecast");
+//      for (let i = 0; i < forecastEls.length; i++) {
+//          forecastEls[i].innerHTML = "";
+//          const index = i * 8 + 4;
+//         //  const forecastDate = new Date(response.data.list[forecastIndex].dt * 1000);
+
+//          const forecastDateEl = document.createElement("p");
+//          forecastDateEl.setAttribute('class', 'mt-3 mb-0 forecast-date');
+//          forecastDateEl.innerHTML = response.data.list[index].dt_txt;
+
+
+//     }
+// 
+
