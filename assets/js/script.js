@@ -8,6 +8,7 @@ const currentWindEl = document.getElementById("today-wind-speed");
 const currentHumidityEl = document.getElementById("today-humidity");
 const forecastEl = document.getElementById("forecast");
 const searchHistoryEl = document.getElementById("search-history");
+const newSearchBtn = document.getElementById("new-search-btn");
 
 
 // Saving API key variable
@@ -38,12 +39,10 @@ function grabCity(event) {
     // copy these to put in the keypress event function
     var cityName = $("#city-search").val();
     getWeather(cityName);
+    // Decide to keep this or not for buttons
+    newSearchBtn.classList.remove("d-none");
+    clearBtn.classList.remove("d-none");
 }
-
-// Create function to get city weather and make api call 
-
-
-// put 5 day call all inside this function to grab everything at once - done
 
 
 
@@ -87,7 +86,6 @@ function renderCityData(data) {
 
 }
 
-// TODO: Make 5 day forecast call and render elements 
 // Function call is working and grabbing data
 
 function getForecast(city) {
@@ -125,12 +123,15 @@ function renderSearchHistory() {
     if(city) {
         searchHistory = JSON.parse(city)
     }
+    
     searchHistoryEl.innerHTML = "";
     for (let i = 0; i < searchHistory.length; i++) {
         searchHistoryEl.innerHTML += `<input type="text" readonly class="form-control d-block bg-white mb-2" value="${searchHistory[i]}">`
+        // searchHistory[i].addEventListener("click", function(){
+        //     grabCity(searchHistory.val())
+        // })
     }
 }
-
 renderSearchHistory();
 
 
@@ -142,4 +143,5 @@ clearBtn.addEventListener("click", function(){
 
 
 // TODO: give functionality to new search button to clear local storage and reset to index and new search
-// TODO: When clicking items in recent history search, it should render data for that city again
+// TODO: When clicking items in recent history search, it should render data for that city again. Add event listner for value in each city search item being appended
+// TODO: Prevent blank input blocks from rendering to form if no city
