@@ -112,9 +112,7 @@ function getForecast(city) {
             const forecastDateEl = document.createElement("p");
             forecastDateEl.setAttribute('class', 'mt-3 mb-0 forecast-date');
             forecastDateEl.innerHTML = dayjs(data.list[index].dt_txt).format('MM/DD/YYYY');
-            forecastEls[i].innerHTML = forecastDateEl.innerHTML + `<br> <img src="http://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png"> <br> <p>Temperature: ${data.list[index].main.temp} °F</p> ` + `<p>Wind Speed: ${data.list[index].wind.speed} MPH</p>` + `<p>Humidity: ${data.list[index].main.humidity}%</p>`;
-            // TODO: finish set up of rendering elements to forecast cards
-        
+            forecastEls[i].innerHTML = forecastDateEl.innerHTML + `<br> <img src="http://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png"> <br> <p>Temperature: ${data.list[index].main.temp} °F</p> ` + `<p>Wind Speed: ${data.list[index].wind.speed} MPH</p>` + `<p>Humidity: ${data.list[index].main.humidity}%</p>`;        
     }
 
 })
@@ -141,3 +139,7 @@ clearBtn.addEventListener("click", function(){
     searchHistory = [];
     renderSearchHistory();
 })
+
+
+// TODO: give functionality to new search button to clear local storage and reset to index and new search
+// TODO: When clicking items in recent history search, it should render data for that city again
