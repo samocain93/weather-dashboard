@@ -13,12 +13,16 @@ const searchHistoryEl = document.getElementById("search-history");
 // Saving API key variable
 var apiKey = "a1fe84e1ab8a4fe1c1aa03d84e6c4570";
 
+// var for city
 var city;
 
+// gloabl var for search history array
 let searchHistory = [];
 
+// event listener on search click to grab city and initialize
 searchBtn.addEventListener("click", grabCity);
 
+// Same function as above but set to start when key press enter
 citySearch.addEventListener("keypress", function(event){
     
     if (event.key === "Enter"){
@@ -141,6 +145,11 @@ function renderSearchHistory() {
 
 renderSearchHistory();
 
+
+clearBtn.addEventListener("click", function(){
+    localStorage.clear();
+
+})
 
 
 
