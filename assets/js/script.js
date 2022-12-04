@@ -18,7 +18,14 @@ var city;
 let searchHistory = [];
 
 searchBtn.addEventListener("click", grabCity);
-searchBtn.addEventListener("keydown", grabCity);
+
+citySearch.addEventListener("keypress", function(event){
+    
+    if (event.key === "Enter"){
+    var cityName = $("#city-search").val();
+    getWeather(cityName);
+    }
+});
 
 //  TODO: Figure out how to get search to trigger when pressing enter here
 
@@ -101,7 +108,6 @@ function getForecast(city) {
         console.log(data)
 
 
-        // Don't know where to put this / not getting response in console
         const forecastEls = document.querySelectorAll(".forecast");
         // forecastEls[i].innerHTML = "";
         for (let i = 0; i < forecastEls.length; i++) {
