@@ -130,8 +130,15 @@ function renderSearchHistory() {
         // searchHistory[i].addEventListener("click", function(){
         //     grabCity(searchHistory.val())
         // })
+
+        //  THis part is not working
+        const inputItem = document.querySelector('form[class="form-control"]');
+
+        inputItem.addEventListener("click", function(){
+            console.log('hello')
+        })
+        }
     }
-}
 renderSearchHistory();
 
 
