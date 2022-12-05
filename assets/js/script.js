@@ -32,6 +32,21 @@ citySearch.addEventListener("keypress", function(event){
     }
 });
 
+// Event target for new search button to reset and go home
+newSearchBtn.addEventListener("click", function(){
+    localStorage.clear();
+    searchHistory = [];
+
+    window.location.href = "./index.html";
+    
+
+})
+
+
+
+
+
+
 // Funciton to get city value from search box and store in a variable for functions
 function grabCity(event) {
     event.preventDefault();
@@ -51,6 +66,9 @@ function getWeather(cityName) {
 
     fetch(queryUrl)
     .then(function (response) {
+        if (response.status !== 200) {
+            alert('Please enter a valid city');
+        }
         return response.json();
     })
     .then(function (data) {
@@ -121,22 +139,15 @@ function getForecast(city) {
 function renderSearchHistory() {
     var city = localStorage.getItem("city");
     if(city) {
-        searchHistory = JSON.parse(city)
+        searchHistory = JSON.parse(city);
     }
     
     searchHistoryEl.innerHTML = "";
     for (let i = 0; i < searchHistory.length; i++) {
         searchHistoryEl.innerHTML += `<input type="text" readonly class="form-control d-block bg-white mb-2" value="${searchHistory[i]}">`
-        // searchHistory[i].addEventListener("click", function(){
-        //     grabCity(searchHistory.val())
-        // })
 
-        //  THis part is not working
-        const inputItem = document.querySelector('form[class="form-control"]');
-
-        inputItem.addEventListener("click", function(){
-            console.log('hello')
-        })
+        //  try appending them as elements and assigning variables for what is added to the page here... need to be able to click these and add event listeners to the items
+       
         }
     }
 renderSearchHistory();
@@ -149,6 +160,10 @@ clearBtn.addEventListener("click", function(){
 })
 
 
-// TODO: give functionality to new search button to clear local storage and reset to index and new search
+// give functionality to new search button to clear local storage and reset to index and new search - DONE
+
 // TODO: When clicking items in recent history search, it should render data for that city again. Add event listner for value in each city search item being appended
+
 // TODO: Prevent blank input blocks from rendering to form if no city
+
+// Add check/alert for if a city is not entered  - DONE
