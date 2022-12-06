@@ -23,6 +23,7 @@ let searchHistory = [];
 // event listener on search click to grab city and initialize
 searchBtn.addEventListener("click", grabCity);
 
+
 // Same function as above but set to start when key press enter
 citySearch.addEventListener("keypress", function(event){
     
@@ -123,7 +124,6 @@ function getForecast(city) {
         for (let i = 0; i < forecastEls.length; i++) {
             
             const index = i * 8 + 2;
-            // const forecastDate = new Date(data.list[index].dt * 1000);
    
             const forecastDateEl = document.createElement("p");
             forecastDateEl.setAttribute('class', 'mt-3 mb-0 forecast-date');
@@ -140,13 +140,38 @@ function renderSearchHistory() {
     var city = localStorage.getItem("city");
     if(city) {
         searchHistory = JSON.parse(city);
-    }
-    
-    searchHistoryEl.innerHTML = "";
-    for (let i = 0; i < searchHistory.length; i++) {
-        searchHistoryEl.innerHTML += `<input type="text" readonly class="form-control d-block bg-white mb-2" value="${searchHistory[i]}">`
+        console.log(searchHistory);
+        if(searchHistory.length === 0){
+            return;
+        } else {
+            searchHistoryEl.innerHTML = "";
+            
+            for (var i = 0; i < searchHistory.length; i++){
+                var cityList = document.createElement("h4");
+                cityList.classList.add("search");
+                cityList.textContent = `${searchHistory[i]}`;
+                cityList.setAttribute('class', 'border-bottom text-primary');
+                searchHistoryEl.appendChild(cityList);
+                cityList.addEventListener("click", function(){
+                    getWeather(this.textContent);}, false);
+                
+                    if (searchHistory.length > 5){
+                        searchHistory.shift()
+                    }
+            }
 
-        //  try appending them as elements and assigning variables for what is added to the page here... need to be able to click these and add event listeners to the items
+
+
+        }
+    
+    
+    // searchHistoryEl.innerHTML = "";
+    // for (let i = 0; i < searchHistory.length; i++) {
+    // //     searchHistoryEl.innerHTML += `<input type="text" readonly class="form-control d-block bg-white mb-2" value="${searchHistory[i]}">`
+
+    
+
+    // }
        
         }
     }
@@ -155,14 +180,15 @@ renderSearchHistory();
 
 clearBtn.addEventListener("click", function(){
     localStorage.clear();
+    searchHistoryEl.innerHTML = "";
     searchHistory = [];
-    renderSearchHistory();
+    // renderSearchHistory();
 })
 
 
 // give functionality to new search button to clear local storage and reset to index and new search - DONE
 
-// TODO: When clicking items in recent history search, it should render data for that city again. Add event listner for value in each city search item being appended
+// When clicking items in recent history search, it should render data for that city again. Add event listner for value in each city search item being appended - DONE
 
 // TODO: Prevent blank input blocks from rendering to form if no city
 
