@@ -45,9 +45,6 @@ newSearchBtn.addEventListener("click", function(){
 
 
 
-
-
-
 // Funciton to get city value from search box and store in a variable for functions
 function grabCity(event) {
     event.preventDefault();
@@ -83,7 +80,6 @@ function getWeather(cityName) {
         renderCityData(data);
         forecastEl.classList.remove("d-none");
         getForecast(city);
-        // renderForecast(data);
 
 
     })
@@ -153,12 +149,15 @@ function renderSearchHistory() {
                 cityList.setAttribute('class', 'border-bottom text-primary');
                 searchHistoryEl.appendChild(cityList);
                 cityList.addEventListener("click", function(){
-                    getWeather(this.textContent);}, false);
+                    city = 
+                    getWeather(this.textContent);
+
+                    //TODO: Need it to display the forecast and is only showing current weather block right now
                 
                     if (searchHistory.length > 5){
                         searchHistory.shift()
                     }
-            }
+            })}
 
 
 
