@@ -27,7 +27,7 @@ searchBtn.addEventListener("click", grabCity);
 citySearch.addEventListener("keypress", function(event){
     
     if (event.key === "Enter"){
-    var cityName = $("#city-search").val();
+    var cityName = $("#city-search").val().trim();
     getWeather(cityName);
     }
 });
