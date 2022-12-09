@@ -72,14 +72,20 @@ function getWeather(cityName) {
     .then(function (data) {
         console.log(data)
 
-        searchHistory.push(cityName);
-        localStorage.setItem("city", JSON.stringify(searchHistory));
+        if (!searchHistory.includes(cityName)) {
+            searchHistory.push(cityName);
+            localStorage.setItem("city", JSON.stringify(searchHistory));
+        }
+
+       
         renderSearchHistory();
 
         todayWeatherEl.classList.remove("d-none");
         renderCityData(data);
         forecastEl.classList.remove("d-none");
-        getForecast(city);
+        getForecast(cityName);
+
+        citySearch.value = "";
 
 
     })
@@ -104,7 +110,7 @@ function renderCityData(data) {
 // Function call is working and grabbing data
 
 function getForecast(city) {
-    var city = $("#city-search").val();
+    // var city = $("#city-search").val();
     var forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`;
 
     fetch(forecast)
@@ -152,9 +158,9 @@ function renderSearchHistory() {
                     city = 
                     getWeather(this.textContent);
 
-                    //TODO: Need it to display the forecast and is only showing current weather block right now
+            
                 
-                    if (searchHistory.length > 5){
+                    if (searchHistory.length >= 5){
                         searchHistory.shift()
                     }
             })}
@@ -162,15 +168,6 @@ function renderSearchHistory() {
 
 
         }
-    
-    
-    // searchHistoryEl.innerHTML = "";
-    // for (let i = 0; i < searchHistory.length; i++) {
-    // //     searchHistoryEl.innerHTML += `<input type="text" readonly class="form-control d-block bg-white mb-2" value="${searchHistory[i]}">`
-
-    
-
-    // }
        
         }
     }
@@ -181,14 +178,4 @@ clearBtn.addEventListener("click", function(){
     localStorage.clear();
     searchHistoryEl.innerHTML = "";
     searchHistory = [];
-    // renderSearchHistory();
 })
-
-
-// give functionality to new search button to clear local storage and reset to index and new search - DONE
-
-// When clicking items in recent history search, it should render data for that city again. Add event listner for value in each city search item being appended - DONE
-
-// TODO: Prevent blank input blocks from rendering to form if no city
-
-// Add check/alert for if a city is not entered  - DONE
