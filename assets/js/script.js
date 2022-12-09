@@ -72,6 +72,7 @@ function getWeather(cityName) {
     .then(function (data) {
         console.log(data)
 
+        // keeps list from rendering searched city if name is already there
         if (!searchHistory.includes(cityName)) {
             searchHistory.push(cityName);
             localStorage.setItem("city", JSON.stringify(searchHistory));
@@ -122,7 +123,7 @@ function getForecast(city) {
 
 
         const forecastEls = document.querySelectorAll(".forecast");
-        // forecastEls[i].innerHTML = "";
+        
         for (let i = 0; i < forecastEls.length; i++) {
             
             const index = i * 8 + 2;
@@ -143,7 +144,11 @@ function renderSearchHistory() {
     if(city) {
         searchHistory = JSON.parse(city);
         console.log(searchHistory);
-        if(searchHistory.length === 0){
+
+        // Prevents search history list from passing 10 items
+        if (searchHistory.length > 10){
+            searchHistory.shift();
+        } else if(searchHistory.length === 0){
             return;
         } else {
             searchHistoryEl.innerHTML = "";
@@ -156,17 +161,8 @@ function renderSearchHistory() {
                 searchHistoryEl.appendChild(cityList);
                 cityList.addEventListener("click", function(){
                     city = 
-                    getWeather(this.textContent);
-
-            
-                
-                    if (searchHistory.length >= 5){
-                        searchHistory.shift()
-                    }
+                    getWeather(this.textContent); 
             })}
-
-
-
         }
        
         }
